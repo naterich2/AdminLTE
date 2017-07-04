@@ -51,23 +51,8 @@ if (isset($_GET['summary']) || isset($_GET['summaryRaw']) || !count($_GET))
 	$data = array_merge($data,$stats);
 }
 
-if (isset($_GET['overTimeData10mins']))
-{
-	sendRequestFTL("overTime");
-	$return = getResponseFTL();
+https://github.com/naterich2/AdminLTE
 
-	$domains_over_time = array();
-	$ads_over_time = array();
-	foreach($return as $line)
-	{
-		$tmp = explode(" ",$line);
-		$domains_over_time[intval($tmp[0])] = intval($tmp[1]);
-		$ads_over_time[intval($tmp[0])] = intval($tmp[2]);
-	}
-	$result = array('domains_over_time' => $domains_over_time,
-	                'ads_over_time' => $ads_over_time);
-	$data = array_merge($data, $result);
-}
 
 if (isset($_GET['topItems']) && $auth)
 {
